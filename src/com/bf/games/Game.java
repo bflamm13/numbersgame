@@ -6,9 +6,9 @@ public class Game
 {	
 	private String name;
 	private GameType type;
-	private int maxBalls;
+	private int maxNums;
 	private int picks;
-	private int maxBonusBalls;
+	private int maxBonusNums;
 	private int bonusPicks;
 	private String description;
 	
@@ -22,9 +22,9 @@ public class Game
 		return type.toString();
 	}
 
-	public int getMaxBalls()
+	public int getMaxNums()
 	{
-		return maxBalls;
+		return maxNums;
 	}
 
 	public int getPicks()
@@ -32,9 +32,9 @@ public class Game
 		return picks;
 	}
 
-	public int getMaxBonusBalls()
+	public int getMaxBonusNums()
 	{
-		return maxBonusBalls;
+		return maxBonusNums;
 	}
 
 	public int getBonusPicks()
@@ -62,9 +62,9 @@ public class Game
 		this.type = type;
 	}
 	
-	public void setMaxBalls(int maxBalls)
+	public void setMaxNums(int maxNums)
 	{
-		this.maxBalls = maxBalls;
+		this.maxNums = maxNums;
 	}
 
 	public void setPicks(int picks)
@@ -72,9 +72,9 @@ public class Game
 		this.picks = picks;
 	}
 
-	public void setMaxBonusBalls(int maxBonusBalls)
+	public void setMaxBonusNums(int maxBonusBalls)
 	{
-		this.maxBonusBalls = maxBonusBalls;
+		this.maxBonusNums = maxBonusBalls;
 	}
 
 	public void setBonusPicks(int bonusPicks)
@@ -92,13 +92,13 @@ public class Game
 		
 	}
 	
-	public Game(String name, GameType type, int balls, int picks, int bonus, int bonusPicks)
+	public Game(String name, GameType type, int nums, int picks, int bonus, int bonusPicks)
 	{
 		this.name = name;
 		this.type = type;
-		this.maxBalls = balls;
+		this.maxNums = nums;
 		this.picks = picks;
-		this.maxBonusBalls = bonus;
+		this.maxBonusNums = bonus;
 		this.bonusPicks = bonusPicks;
 	}
 }
