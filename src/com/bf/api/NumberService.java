@@ -24,14 +24,15 @@ public class NumberService {
 	@Produces(MediaType.APPLICATION_JSON) 
 	public Response getNumbers(@PathParam("type") String type)
 	{ 
-		GameType gType = checkType(type);
-		if (gType == null)
-		{
-			return Response.serverError().entity("Invalid game type("+type+")").build();
-		}
-		AbstractGame numGame = GameFactory.getGame(gType);
 		try
 		{
+			GameType gType = GameFactory.GameType.convert(type);
+			if (gType == null)
+			{
+				return Response.serverError().entity("Invalid game type("+type+")").build();
+			}
+			
+			AbstractGame numGame = GameFactory.getGame(gType);
 			Pair<List<Integer>, List<Integer>> nums = numGame.getNumbers();
 			if (nums!=null)
 			{
@@ -59,18 +60,5 @@ public class NumberService {
 		return Response.ok(games, MediaType.APPLICATION_JSON).build();
 	}
 	
-	private GameType checkType(String type)
-	{
-		GameType gType;
-		try
-		{
-			gType = GameType.valueOf(type);
-		}
-		catch (Exception e)
-		{
-			return null;
-		}
-		return gType;
-	}  
-	
+
 }
