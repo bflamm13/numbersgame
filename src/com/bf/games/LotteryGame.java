@@ -4,11 +4,12 @@ package com.bf.games;
 import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import com.bf.generator.Generator;
+import com.bf.generator.AbstractGenerator;
+import com.bf.generator.DefaultGenerator;
 
 public class LotteryGame extends AbstractGame
 {	
-	Generator gen = new Generator();
+	AbstractGenerator gen = new DefaultGenerator();
 
 	public LotteryGame(Game g)
 	{
@@ -24,10 +25,10 @@ public class LotteryGame extends AbstractGame
 		 * pick 5 out of 48 plus bonus ball 1 out od 18
 		 */
 		List<Integer> bonuses = null;
-		List<Integer> numbers = gen.generateNumbers(gInfo.getMaxBalls(),gInfo.getPicks());
+		List<Integer> numbers = gen.generateNumbers(gInfo.getMaxNums(),gInfo.getPicks());
 		if (gInfo.getBonusPicks() != 0)
 		{
-			bonuses = gen.generateNumbers(gInfo.getMaxBonusBalls(),gInfo.getBonusPicks());
+			bonuses = gen.generateNumbers(gInfo.getMaxBonusNums(),gInfo.getBonusPicks());
 		}
 		
 		Pair<List<Integer>, List<Integer>> p = new ImmutablePair<List<Integer>, List<Integer>>(numbers,(bonuses == null) ? null : bonuses);
@@ -36,6 +37,6 @@ public class LotteryGame extends AbstractGame
 
 	public void display()
 	{
-		display(gInfo.getDescription(), gInfo.getMaxBalls(),gInfo.getPicks(), gInfo.getMaxBonusBalls());
+		display(gInfo.getDescription(), gInfo.getMaxNums(),gInfo.getPicks(), gInfo.getMaxBonusNums());
 	}
 }
