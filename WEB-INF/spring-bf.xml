@@ -15,9 +15,9 @@
     <bean id="LL" class="com.bf.games.Game">
         <property name="name" value="LuckyForLife" />
         <property name="type" value="LUCKYFORLIFE"/>
-        <property name="maxBalls" value="48" />
+        <property name="maxNums" value="48" />
         <property name="picks" value="5" />
-        <property name="maxBonusBalls" value="18" />
+        <property name="maxBonusNums" value="18" />
         <property name="bonusPicks" value="1" />
         <property name="description" value="Pick 5 numbers 1 to 48, Pick 1 bonus number 1 to 18"/>
     </bean>
@@ -25,7 +25,7 @@
     <bean id="MB" class="com.bf.games.Game">
         <property name="name" value="MegaBucks" />
         <property name="type" value="MEGABUCKS"/>
-        <property name="maxBalls" value="49" />
+        <property name="maxNums" value="49" />
         <property name="picks" value="5" />
         <property name="description" value="Pick 5 numbers 1 to 49"/>
     </bean>
@@ -33,9 +33,9 @@
     <bean id="PB" class="com.bf.games.Game">
         <property name="name" value="PowerBall" />
         <property name="type" value="POWERBALL"/>
-        <property name="maxBalls" value="69" />
+        <property name="maxNums" value="69" />
         <property name="picks" value="5" />
-        <property name="maxBonusBalls" value="26" />
+        <property name="maxBonusNums" value="26" />
         <property name="bonusPicks" value="1" />
         <property name="description" value="Pick 5 numbers 1 to 69, Pick 1 bonus number 1 to 26"/>
     </bean>
@@ -43,4 +43,5 @@
     <bean id="GameFactory" class="com.bf.games.GameFactory">
     	<constructor-arg ref="gameList"/>
     </bean>
+    
 </beans>
