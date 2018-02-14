@@ -10,8 +10,10 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 
 import com.bf.games.Game;
+import com.bf.games.GameFactory;
 import com.bf.games.LotteryGame;
-import com.bf.generator.Generator;
+import com.bf.generator.AbstractGenerator;
+import com.bf.generator.DefaultGenerator;
 
 public class Test
 {
@@ -23,11 +25,15 @@ public class Test
 		System.out.println("");
 		System.out.println("#######" + name.getMethodName() + "#######");
 	}
+	
 	@org.junit.Test
 	public void testGame()
 	{
+		String type = "LUCKYFORLIFE";
 		Game g = new Game();
-		g.setType("LUCKYFORLIFE");
+		g.setType(type);
+		
+		assertEquals(g.getType(), type);
 	}
 	
 	@org.junit.Test
@@ -35,20 +41,21 @@ public class Test
 	{
 		int max = 48;
 		int picks = 5;
-		Generator g = new Generator();
+		AbstractGenerator g = new DefaultGenerator();
 		try
 		{
 			List<Integer> nums = g.generateNumbers(max, picks);
 			assertEquals(picks, nums.size());
 			for (Integer num : nums)
 			{
+				assertTrue(num >=1 && num <= max);
 				System.out.println("num: " + num);
 			}
 			
 		} 
 		catch (Exception e)
 		{
-			// TODO Auto-generated catch block
+			fail("Exception Occurred:" + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -58,19 +65,21 @@ public class Test
 	{
 		int max = 18;
 		int picks = 1;
-		Generator g = new Generator();
+		AbstractGenerator g = new DefaultGenerator();
 		try
 		{
 			List<Integer> nums = g.generateNumbers(max, picks);
 			assertEquals(picks, nums.size());
 			for (Integer num : nums)
 			{
+				assertTrue(num >=1 && num <= max);
 				System.out.println("num: " + num);
 			}
 			
 		} 
 		catch (Exception e)
 		{
+			fail("Exception Occurred:" + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -80,19 +89,21 @@ public class Test
 	{
 		int max = 10;
 		int picks = 10;
-		Generator g = new Generator();
+		AbstractGenerator g = new DefaultGenerator();
 		try
 		{
 			List<Integer> nums = g.generateNumbers(max, picks);
 			assertEquals(picks, nums.size());
 			for (Integer num : nums)
 			{
+				assertTrue(num >=1 && num <= max);
 				System.out.println("num: " + num);
 			}
 			
 		} 
 		catch (Exception e)
 		{
+			fail("Exception Occurred:" + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -102,7 +113,7 @@ public class Test
 	{
 		int max = 10;
 		int picks = 11;
-		Generator g = new Generator();
+		AbstractGenerator g = new DefaultGenerator();
 		try
 		{
 			List<Integer> nums = g.generateNumbers(max, picks);
@@ -111,7 +122,7 @@ public class Test
 			{
 				System.out.println("num: " + num);
 			}
-			
+			fail("Exception Did Not Occurred: The picks(11) greater than balls available(10)");
 		} 
 		catch (Exception e)
 		{
@@ -126,8 +137,8 @@ public class Test
 		Game g = new Game();
 		g.setDescription("TEST");
 		g.setBonusPicks(1);
-		g.setMaxBalls(100);
-		g.setMaxBonusBalls(26);
+		g.setMaxNums(100);
+		g.setMaxBonusNums(26);
 		g.setPicks(6);
 		
 		LotteryGame ll = new LotteryGame(g);
@@ -143,7 +154,7 @@ public class Test
 		} 
 		catch (Exception e)
 		{
-			// TODO Auto-generated catch block
+			fail("Exception Occurred:" + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -154,10 +165,23 @@ public class Test
 		Game g = new Game();
 		g.setDescription("TEST");
 		g.setBonusPicks(1);
-		g.setMaxBalls(100);
-		g.setMaxBonusBalls(26);
+		g.setMaxNums(100);
+		g.setMaxBonusNums(26);
 		g.setPicks(6);
 		LotteryGame ll = new LotteryGame(g);
 		ll.display();
 	}
+	
+	@org.junit.Test
+	public void testType()
+	{
+		String type = "POWERBALL";
+		GameFactory.GameType t = GameFactory.GameType.convert(type);
+		
+		System.out.println("TYPE: " + ((t == null) ? "INVALID": t));
+		type = "BAD";
+		t = GameFactory.GameType.convert(type);		
+		System.out.println("TYPE: " + ((t == null) ? "INVALID": t));
+	}
+	
 }
