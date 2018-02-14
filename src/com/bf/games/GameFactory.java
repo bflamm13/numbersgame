@@ -11,11 +11,26 @@ public class GameFactory
 	{
 		LUCKYFORLIFE,
 		MEGABUCKS,
-		POWERBALL	
+		POWERBALL;	
+		
+		public static GameType convert(String type)
+		{
+			GameType gType;
+			try
+			{
+				gType = GameType.valueOf(type);
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
+			return gType;
+		}  
+		
 	};
 	
 	static Map<GameType, Game> gMap = new HashMap<GameType, Game>();
-	
+		
 	public GameFactory(ArrayList<Game> games)
 	{
 		for (Game g: games)
@@ -23,7 +38,6 @@ public class GameFactory
 			gMap.put(GameType.valueOf(g.getType()), g);
 		}
 	}
-
 
 	static public AbstractGame getGame(GameType type)
 	{		
@@ -36,8 +50,7 @@ public class GameFactory
 				return new LotteryGame(g);
 			default:
 				throw new UnsupportedOperationException("Invalid game type :" + type);
-		}
-		
+		}	
 	}
 
 
