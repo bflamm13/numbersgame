@@ -2,7 +2,7 @@
 
 Playing around with java and OOD/OOP
 
-using jersey to create restful apis for generating numbers for varous lottery games
+using jersey to create restful apis for generating numbers for various lottery games, handles main number and bonus picks
 
 Using spring to configure lottery games available.
 
@@ -14,4 +14,4 @@ TO DO:
 2) DB - store games available and history of generated numbers(maybe for analytics)
 3) refactor random number generates to decouple from lotterygame - just in case we want different generators
 4) refactor lotterygame to regular game, with bonus number game
-5) add powerplay feature to games, if available for game
+5) extend games with powerplay feature, if available for game
