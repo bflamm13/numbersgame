@@ -35,7 +35,7 @@ public class GameFactory
 	{
 		for (Game g: games)
 		{
-			gMap.put(GameType.valueOf(g.getType()), g);
+			gMap.put(g.getType(), g);
 		}
 	}
 
