@@ -4,7 +4,9 @@ Playing around with java and OOD/OOP
 
 using jersey to create restful apis for generating numbers for varous lottery games
 
-Using spring to configure lottery games available
+Using spring to configure lottery games available.
+
+Started UI with html/javascript/jquery: NumbersGame.html
 
 TO DO:
 
