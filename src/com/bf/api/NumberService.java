@@ -1,6 +1,5 @@
 package com.bf.api;
 import java.util.Collection;
-import java.util.List;
 
 import javax.ws.rs.GET; 
 import javax.ws.rs.Path;
@@ -9,12 +8,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.commons.lang3.tuple.Pair;
 
 import com.bf.games.AbstractGame;
 import com.bf.games.Game;
 import com.bf.games.GameFactory;
 import com.bf.games.GameFactory.GameType;
+import com.bf.games.GameInfo;
 
 @Path("/NumberService") 
 public class NumberService { 
@@ -33,7 +32,7 @@ public class NumberService {
 			}
 			
 			AbstractGame numGame = GameFactory.getGame(gType);
-			Pair<List<Integer>, List<Integer>> nums = numGame.getNumbers();
+			GameInfo nums = numGame.getNumbers();
 			if (nums!=null)
 			{
 				return Response.ok(nums, MediaType.APPLICATION_JSON).build();
