@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+var url = 'http://localhost:8050/Numbers/rest/NumberService/games'
+var gUrl = 'http://localhost:8050/Numbers/rest/NumberService/Numbers/';
+$.ajax({
+    xhrFields: {
+        withCredentials: true
+    },
+    type: "GET",
+    url: url
+}).done(function (data) {
+    console.log(data);
+});
+
+$.get( url, function( data ) {
+	var table = $("<table/>").attr('border', '1');
+	$('table.docutils').attr('border', '1');
+	i=1;
+	$.each(data, function(index, value) {
+		//$( "body" ).append( "<p>NEW GAME: "+ index+ "</p>" ); 
+		var row = $("<tr/>");
+		row.append( "<tr><td><a class='linker' href='" + gUrl + value.type + "'>"+value.name+"</a></td>" );         
+		row.append("<td><label id='game"+i+"'>XXX</label></td></tr>");
+		table.append(row);
+		i++;
+    })
+    $( "body" ).append(table);
+	
+}, "json" );
+
+$(document).ready(function() {
+    $(".linker").click(function(event) {
+    	event.preventDefault();
+
+    	// Stop adding numbers to page and move numbers to table row and only show last set of numbers 
+    	lUrl = $(this).attr("href");
+    	$.get( lUrl, function( data2 ) {
+    				
+    			$( "body" ).append("<p>Your lucky numbers are:" +data2.mainNums);
+    			if (!!data2.bonusNums)
+    			{
+    				$( "body" ).append("With a bonus number of: " + data2.bonusNums);
+    			}
+    			$( "body" ).append("</p>");
+    	}, "json" );
+    	
+    });
+});
+
+</script>
+
+<body>
+Pick a game and get you lucky numbers right here!!!
+
+
+</body>
+</html>
