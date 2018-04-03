@@ -1,8 +1,5 @@
 package com.bf.games;
 
-import java.util.List;
-import org.apache.commons.lang3.tuple.Pair;
-
 import com.bf.generator.AbstractGenerator;
 
 public abstract class AbstractGame 
@@ -12,7 +9,7 @@ public abstract class AbstractGame
 	protected AbstractGenerator gen;
 	protected Game gInfo;
 	
-	abstract public Pair<List<Integer>, List<Integer>> getNumbers() throws Exception;
+	abstract public GameInfo getNumbers() throws Exception;
 	
 	public AbstractGame(Game g)
 	{
