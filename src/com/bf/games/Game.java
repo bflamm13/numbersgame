@@ -17,9 +17,9 @@ public class Game
 		return name;
 	}
 
-	public String getType()
+	public GameType getType()
 	{
-		return type.toString();
+		return type;
 	}
 
 	public int getMaxNums()
