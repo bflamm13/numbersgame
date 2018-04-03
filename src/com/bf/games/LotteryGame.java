@@ -2,8 +2,6 @@
 package com.bf.games;
 
 import java.util.List;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import com.bf.generator.AbstractGenerator;
 import com.bf.generator.DefaultGenerator;
 
@@ -18,7 +16,7 @@ public class LotteryGame extends AbstractGame
 	}
 
 	@Override
-	public Pair<List<Integer>, List<Integer>> getNumbers() throws Exception
+	public GameInfo getNumbers() throws Exception
 	{
 		
 		/*
@@ -31,8 +29,9 @@ public class LotteryGame extends AbstractGame
 			bonuses = gen.generateNumbers(gInfo.getMaxBonusNums(),gInfo.getBonusPicks());
 		}
 		
-		Pair<List<Integer>, List<Integer>> p = new ImmutablePair<List<Integer>, List<Integer>>(numbers,(bonuses == null) ? null : bonuses);
-		return p;
+		GameInfo info = new GameInfo(numbers, bonuses);
+		
+		return info;
 	}
 
 	public void display()
